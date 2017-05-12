@@ -20,15 +20,13 @@ const RUNTIME = 'runtime';
 // A list of local resources we always want to be cached.
 const PRECACHE_URLS = [
   './', // Alias for index.html
-  '*.js',
-  '*.css'
 ];
 
 // The install handler takes care of precaching the resources we always need.
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(PRECACHE)
-      .then(cache => cache.addAll(PRECACHE_URLS))
+      .then(cache => {cache.addAll(PRECACHE_URLS);console.log('Done install sw.js')})
       .then(self.skipWaiting())
   );
 });
@@ -52,7 +50,8 @@ self.addEventListener('activate', event => {
 // from the network before returning it to the page.
 self.addEventListener('fetch', event => {
   // Skip cross-origin requests, like those for Google Analytics.
-  if (event.request.url.startsWith(self.location.origin)) {
+  if (event.request.url.startsWith(self.location.origin) && (event.request.url !=='http://localhost:3000/auth/local' || event.request.url !=='http://efwaipee.herokuapp.com/auth/local')) {
+    console.log(event.request);
     event.respondWith(
       caches.match(event.request).then(cachedResponse => {
         if (cachedResponse) {

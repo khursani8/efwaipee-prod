@@ -18,6 +18,7 @@ exports.default = function (app) {
   if (env === 'production') {
     app.use((0, _serveFavicon2.default)(_path2.default.join(_environment2.default.root, 'client', 'favicon.ico')));
   }
+  app.use(compression());
 
   app.set('appPath', _path2.default.join(_environment2.default.root, 'client'));
   app.use(_express2.default.static(app.get('appPath')));
@@ -180,4 +181,5 @@ var _mongoose2 = _interopRequireDefault(_mongoose);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var MongoStore = (0, _connectMongo2.default)(_expressSession2.default);
+var compression = require('compression');
 //# sourceMappingURL=express.js.map

@@ -37,7 +37,7 @@
 /* eslint-disable indent, no-unused-vars, no-multiple-empty-lines, max-nested-callbacks, space-before-function-paren, quotes, comma-spacing */
 'use strict';
 
-var precacheConfig = [["/assets/images/yeoman-1cab7d4d37.png","1cab7d4d370dd3b676c13ecf653feadd"],["/assets/rev-manifest.json","5a32838c01c22cd252eb6e12f3d56a6f"]];
+var precacheConfig = [];
 var cacheName = 'sw-precache-v3--' + (self.registration ? self.registration.scope : '');
 
 

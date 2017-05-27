@@ -14,11 +14,11 @@
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
 
     <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="preload" as="script" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
 
-    <script async src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+    <link as="script" rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <script async src="./assets/libs/instascan.min.js"></script>
+    <link as="script" rel="prefetch" href="./assets/libs/instascan.min.js">
 
     
 </head>
@@ -37,10 +37,11 @@
             }, i[r].l = 1 * new Date();
             a = s.createElement(o),
                 m = s.getElementsByTagName(o)[0];
-            a.async = 1;
-            a.src = g;
+            a.rel = "preload";
+            a.href = g;
+            a.as = "script";
             m.parentNode.insertBefore(a, m)
-        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+        })(window, document, 'link', 'https://www.google-analytics.com/analytics.js', 'ga');
 
         ga('create', 'UA-XXXXX-X');
         ga('send', 'pageview');

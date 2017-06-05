@@ -21,6 +21,7 @@ var _promise2 = _interopRequireDefault(_promise);
 exports.index = index;
 exports.show = show;
 exports.showStudent = showStudent;
+exports.showThesis = showThesis;
 exports.create = create;
 exports.upsert = upsert;
 exports.patch = patch;
@@ -99,6 +100,11 @@ function show(req, res) {
 // Gets a single Thesis based on student Idfrom the DB
 function showStudent(req, res) {
   return _thesis2.default.find({ "studentId": req.params.id }).exec().then(handleEntityNotFound(res)).then(respondWithResult(res)).catch(handleError(res));
+}
+
+function showThesis(req, res) {
+  // console.log("show Thesis",req.params.name);
+  return _thesis2.default.find({ "name": { '$regex': req.params.name, '$options': 'i' } }).exec().then(handleEntityNotFound(res)).then(respondWithResult(res)).catch(handleError(res));
 }
 
 // Creates a new Thesis in the DB

@@ -35,6 +35,10 @@ var _thesis = require('./thesis.model');
 
 var _thesis2 = _interopRequireDefault(_thesis);
 
+var _log = require('../log/log.model');
+
+var _log2 = _interopRequireDefault(_log);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function respondWithResult(res, statusCode) {
@@ -50,9 +54,30 @@ function respondWithResult(res, statusCode) {
 function patchUpdates(patches) {
 
   return function (entity) {
+    var _this = this;
+
     patches.value = entity.checkpoint + 1;
+
+    if (patches.value == 2) {
+      //update all document to CGS SEND
+      _thesis2.default.find({ 'studentId': entity.studentId }).exec().then(function (res1) {
+        res1.forEach(function (el) {
+          if (el.checkpoint < 3) {
+            try {
+              _fastJsonPatch2.default.apply(el, [patches], /*validate*/true);
+              _log2.default.create({ 'thesisId': el._id, 'checkpoint': el.checkpoint, time: new Date(), 'studentId': el.studentId });
+            } catch (err) {
+              return _promise2.default.reject(err);
+            }
+            el.save();
+          }
+        }, _this);
+      });
+    }
+
     try {
       _fastJsonPatch2.default.apply(entity, [patches], /*validate*/true);
+      _log2.default.create({ 'thesisId': entity._id, 'checkpoint': entity.checkpoint, time: new Date(), 'studentId': entity.studentId });
     } catch (err) {
       return _promise2.default.reject(err);
     }
@@ -109,7 +134,9 @@ function showThesis(req, res) {
 
 // Creates a new Thesis in the DB
 function create(req, res) {
-  return _thesis2.default.create(req.body).then(respondWithResult(res, 201)).catch(handleError(res));
+  return _thesis2.default.create(req.body).then(function (el) {
+    _log2.default.create({ 'thesisId': el._id, 'checkpoint': el.checkpoint, time: new Date(), 'studentId': el.studentId });
+  }).then(respondWithResult(res, 201)).catch(handleError(res));
 }
 
 // Upserts the given Thesis in the DB at the specified ID

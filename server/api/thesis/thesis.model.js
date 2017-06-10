@@ -20,7 +20,7 @@ var ThesisSchema = new _mongoose2.default.Schema({
     examinerId: String,
     checkpoint: {
         type: Number,
-        default: 0,
+        default: 1,
         max: 4
     }
 });

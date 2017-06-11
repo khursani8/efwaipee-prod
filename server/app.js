@@ -39,6 +39,7 @@ _mongoose2.default.connection.on('error', function (err) {
   console.error('MongoDB connection error: ' + err);
   process.exit(-1); // eslint-disable-line no-process-exit
 });
+require('@risingstack/trace'); // trace should be on top
 
 // Setup server
 var app = (0, _express2.default)();

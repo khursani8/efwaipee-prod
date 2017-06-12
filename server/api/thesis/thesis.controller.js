@@ -101,7 +101,11 @@ function patchUpdates(patches) {
 function removeEntity(res) {
   return function (entity) {
     if (entity) {
+
       return entity.remove().then(function () {
+        _log2.default.find({
+          'thesisId': entity._id
+        }).remove().exec();
         res.status(204).end();
       });
     }

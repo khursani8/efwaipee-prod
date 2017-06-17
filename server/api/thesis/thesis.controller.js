@@ -41,8 +41,11 @@ var _log2 = _interopRequireDefault(_log);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+var accessKeyId = process.env.aKId;
+var secretAccessKey = process.env.secret;
+
 var AWS = require('aws-sdk');
-AWS.config.update({ region: 'us-east-1', accessKeyId: 'AKIAJNGLXK4JNO2DQKPA', secretAccessKey: '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' });
+AWS.config.update({ region: 'us-east-1', accessKeyId: accessKeyId, secretAccessKey: secretAccessKey });
 var sns = new AWS.SNS();
 
 function respondWithResult(res, statusCode) {

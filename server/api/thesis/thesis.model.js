@@ -23,6 +23,10 @@ var ThesisSchema = new _mongoose2.default.Schema({
         type: Number,
         default: 1,
         max: 4
+    },
+    dateReceived: {
+        type: Date,
+        default: null
     }
 });
 

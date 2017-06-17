@@ -43,6 +43,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var accessKeyId = process.env.aKId;
 var secretAccessKey = process.env.secret;
+var smsMessage = 'Thesis from Universiti Teknologi Petronas have been sent to you.Please browse https://cgs.sani.tech and scan the QRcode inside the thesis';
 
 var AWS = require('aws-sdk');
 AWS.config.update({ region: 'us-east-1', accessKeyId: accessKeyId, secretAccessKey: secretAccessKey });
@@ -64,6 +65,7 @@ function patchUpdates(patches) {
     var _this = this;
 
     patches.value = entity.checkpoint + 1;
+    console.log('entity before', entity);
 
     if (patches.value == 2) {
       //update all document to CGS SEND
@@ -75,13 +77,15 @@ function patchUpdates(patches) {
               _fastJsonPatch2.default.apply(el, [patches], /*validate*/true);
               _log2.default.create({ 'thesisId': el._id, 'checkpoint': el.checkpoint, time: new Date(), 'studentId': el.studentId });
               var params = {
-                Message: 'Thesis from Universiti Teknologi Petronas have been sent to you.Please browse https://efwaipee.herokuapp.com/qrrecognizer and scan the QRcode inside the thesis',
+                Message: smsMessage,
                 PhoneNumber: el.examinerPhone
               };
-              sns.publish(params, function (err, data) {
-                if (err) console.log(err, err.stack); // an error occurred
-                else console.log(data); // successful response
-              });
+              if (secretAccessKey) {
+                sns.publish(params, function (err, data) {
+                  if (err) console.log(err, err.stack); // an error occurred
+                  else console.log(data); // successful response
+                });
+              }
             } catch (err) {
               return _promise2.default.reject(err);
             }
@@ -92,8 +96,13 @@ function patchUpdates(patches) {
     }
 
     try {
+      var tarikh = new Date();
+      if (patches.value == 3) {
+        _fastJsonPatch2.default.apply(entity, [{ op: 'replace', path: '/dateReceived', value: tarikh }]);
+      }
+
       _fastJsonPatch2.default.apply(entity, [patches], /*validate*/true);
-      _log2.default.create({ 'thesisId': entity._id, 'checkpoint': entity.checkpoint, time: new Date(), 'studentId': entity.studentId });
+      _log2.default.create({ 'thesisId': entity._id, 'checkpoint': entity.checkpoint, time: tarikh, 'studentId': entity.studentId });
     } catch (err) {
       return _promise2.default.reject(err);
     }

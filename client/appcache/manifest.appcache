@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#ver:2017-06-18 14:30:54
+#ver:2017-06-18 16:29:10
 #plugin:4.8.1
 
 CACHE:
@@ -12,6 +12,8 @@ CACHE:
 /../client/
 /assets/libs/introjs.min.css
 /assets/libs/scripts.js
+/manifest.json
+/sw.js
 
 NETWORK:
 *

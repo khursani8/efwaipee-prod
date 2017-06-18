@@ -1,0 +1,15 @@
+CACHE MANIFEST
+#ver:2017-06-18 14:08:50
+#plugin:4.8.1
+
+CACHE:
+/vendor.76d6aad12c2226bf8ac7.js
+/polyfills.76d6aad12c2226bf8ac7.js
+/app.76d6aad12c2226bf8ac7.js
+/polyfills.76d6aad12c2226bf8ac7.js.gz
+/app.76d6aad12c2226bf8ac7.js.gz
+/vendor.76d6aad12c2226bf8ac7.js.gz
+/../client/
+
+NETWORK:
+*

@@ -1,5 +1,5 @@
 CACHE MANIFEST
-#ver:2017-06-18 14:08:50
+#ver:2017-06-18 14:30:54
 #plugin:4.8.1
 
 CACHE:
@@ -10,6 +10,8 @@ CACHE:
 /app.76d6aad12c2226bf8ac7.js.gz
 /vendor.76d6aad12c2226bf8ac7.js.gz
 /../client/
+/assets/libs/introjs.min.css
+/assets/libs/scripts.js
 
 NETWORK:
 *

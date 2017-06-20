@@ -1,14 +1,14 @@
 CACHE MANIFEST
-#ver:2017-06-19 14:47:16
+#ver:2017-06-20 15:00:56
 #plugin:4.8.1
 
 CACHE:
-/vendor.f9352b892a1bfe299333.js
-/polyfills.f9352b892a1bfe299333.js
-/app.f9352b892a1bfe299333.js
-/polyfills.f9352b892a1bfe299333.js.gz
-/app.f9352b892a1bfe299333.js.gz
-/vendor.f9352b892a1bfe299333.js.gz
+/vendor.ac860d6078bd3da695d8.js
+/polyfills.ac860d6078bd3da695d8.js
+/app.ac860d6078bd3da695d8.js
+/polyfills.ac860d6078bd3da695d8.js.gz
+/app.ac860d6078bd3da695d8.js.gz
+/vendor.ac860d6078bd3da695d8.js.gz
 /../client/
 /assets/libs/introjs.min.css
 /assets/libs/scripts.js

@@ -26,15 +26,23 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <base href="/">
+
     <title>Thesis Tracking System</title>
     <meta name="description" content="Thesis Tracking System">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./assets/libs/nprogress.css">
+    
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script async src="./assets/libs/scripts.js"></script>
+    <script src="./assets/libs/scripts.js"></script>
+    
 </head>
 
-<body>
+<body onload="NProgress.done()">
+    <script>
+      NProgress.start()
+      NProgress.inc()
+    </script>
     <!--[if lt IE 9]>
       <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
@@ -60,12 +68,11 @@
     <link rel="stylesheet" href="./assets/libs/introjs.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
     
-    
 
     <navbar></navbar>
     <div ui-view="">
         FYP 2017
     </div>
     <footer></footer>
-<script type="text/javascript" src="/vendor.ac860d6078bd3da695d8.js"></script><script type="text/javascript" src="/app.ac860d6078bd3da695d8.js"></script><script type="text/javascript" src="/polyfills.ac860d6078bd3da695d8.js"></script></body>
+<script type="text/javascript" src="/vendor.bcdf5907eb8f956c7534.js"></script><script type="text/javascript" src="/app.bcdf5907eb8f956c7534.js"></script><script type="text/javascript" src="/polyfills.bcdf5907eb8f956c7534.js"></script></body>
 </html>

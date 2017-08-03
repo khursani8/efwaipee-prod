@@ -19,6 +19,7 @@ var _promise = require('babel-runtime/core-js/promise');
 var _promise2 = _interopRequireDefault(_promise);
 
 exports.index = index;
+exports.indexGroup = indexGroup;
 exports.show = show;
 exports.showStudent = showStudent;
 exports.showThesis = showThesis;
@@ -68,10 +69,13 @@ function patchUpdates(patches) {
     console.log('entity before', entity);
 
     if (patches.value == 2) {
-      //update all document to CGS SEND
+      //easy update for all document to CGS SEND
       _thesis2.default.find({ 'studentId': entity.studentId }).exec().then(function (res1) {
         res1.forEach(function (el) {
-          if (el.checkpoint < 3) {
+          var elid = "" + el._id;
+          var enid = "" + entity._id;
+          console.log('checkid', elid, enid, elid == enid);
+          if (el.checkpoint < 3 && elid != enid) {
             //kalau ada yg baru tak kan effect yg lama punya document
             try {
               _fastJsonPatch2.default.apply(el, [patches], /*validate*/true);
@@ -98,11 +102,13 @@ function patchUpdates(patches) {
     try {
       var tarikh = new Date();
       if (patches.value == 3) {
+        //patch tarikh je
         _fastJsonPatch2.default.apply(entity, [{ op: 'replace', path: '/dateReceived', value: tarikh }]);
       }
 
       _fastJsonPatch2.default.apply(entity, [patches], /*validate*/true);
-      _log2.default.create({ 'thesisId': entity._id, 'checkpoint': entity.checkpoint, time: tarikh, 'studentId': entity.studentId });
+      console.log('dkt checkpoitn', entity.checkpoint);
+      if (entity.checkpoint !== 5) _log2.default.create({ 'thesisId': entity._id, 'checkpoint': entity.checkpoint, time: tarikh, 'studentId': entity.studentId });
     } catch (err) {
       return _promise2.default.reject(err);
     }
@@ -143,7 +149,19 @@ function handleError(res, statusCode) {
 
 // Gets a list of Thesiss
 function index(req, res) {
-  return _thesis2.default.find().exec().then(respondWithResult(res)).catch(handleError(res));
+  return _thesis2.default.find().sort({ "name": 1 }).exec().then(respondWithResult(res)).catch(handleError(res));
+}
+
+// Gets a list of Thesis group
+function indexGroup(req, res) {
+  return _thesis2.default.aggregate([{
+    $group: {
+      "_id": "$name",
+      "id": { $push: "$_id" },
+      "examinerName": { $push: "$examinerName" },
+      "studentName": { $first: "$studentName" }
+    }
+  }]).exec().then(respondWithResult(res)).catch(handleError(res));
 }
 
 // Gets a single Thesis from the DB
@@ -158,7 +176,16 @@ function showStudent(req, res) {
 
 function showThesis(req, res) {
   // console.log("show Thesis",req.params.name);
-  return _thesis2.default.find({ "name": { '$regex': req.params.name, '$options': 'i' } }).exec().then(handleEntityNotFound(res)).then(respondWithResult(res)).catch(handleError(res));
+  return _thesis2.default.aggregate([{
+    $match: { "name": { '$regex': req.params.name, '$options': 'i' } }
+  }, {
+    $group: {
+      "_id": "$name",
+      "id": { $push: "$_id" },
+      "examinerName": { $push: "$examinerName" },
+      "studentName": { $first: "$studentName" }
+    }
+  }]).exec().then(handleEntityNotFound(res)).then(respondWithResult(res)).catch(handleError(res));
 }
 
 // Creates a new Thesis in the DB

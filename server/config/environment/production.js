@@ -13,7 +13,8 @@ module.exports = {
 
   // MongoDB connection options
   mongo: {
-    uri: 'sani:sani@ds137291.mlab.com:37291/heroku_09md4zfj' || process.env.MONGODB_URI || process.env.MONGOHQ_URL || process.env.OPENSHIFT_MONGODB_DB_URL + process.env.OPENSHIFT_APP_NAME || 'mongodb://localhost/efwaipee'
+
+    uri: 'mongodb://sani:sani@ds061248.mlab.com:61248/cgs' || 'sani:sani@ds137291.mlab.com:37291/heroku_09md4zfj' || process.env.MONGODB_URI || process.env.MONGOHQ_URL || process.env.OPENSHIFT_MONGODB_DB_URL + process.env.OPENSHIFT_APP_NAME || 'mongodb://localhost/efwaipee'
   }
 };
 //# sourceMappingURL=production.js.map

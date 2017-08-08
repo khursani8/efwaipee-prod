@@ -15,13 +15,8 @@
 			text="width:4; align: center; value: Checkpoint;"
 		>
 		</a-entity>
-	<!-- <a-entity geometry="primitive: box" material="shader: html; target: #htmlElement"></a-entity> -->
 		<a-marker-camera preset='hiro'></a-marker-camera>
 	</a-scene>
-
-	<div style="width: 100%; height: 100%; position: fixed; left: 0; top: 0; z-index: -1; overflow: hidden">
-		<div id="htmlElement" style="background: #F8F8F8; color: #333; font-size: 48px">Hello, HTML!</div>
-	</div>
 </body>
 
 
@@ -47,6 +42,9 @@
 			console.log(data);
 			$('#htmlElement').html(data.title)
 			$('.checkpoint[rotation]')[0].setAttribute('text','width:4; align: center; value: Title: '+data.name+'\n'+'Checkpoint:'+out+'\n')
+		})
+		.fail(function(){
+			alert('error')
 		})
 
 	});

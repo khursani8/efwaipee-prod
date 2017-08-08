@@ -8,7 +8,7 @@ module.exports = {
 
   // MongoDB connection options
   mongo: {
-    uri: 'mongodb://localhost/efwaipee-dev'
+    uri: 'mongodb://sani:sani@ds061248.mlab.com:61248/cgs' || 'mongodb://localhost/efwaipee-dev'
   },
 
   // Seed database on startup

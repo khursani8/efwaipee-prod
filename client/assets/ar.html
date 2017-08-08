@@ -11,7 +11,8 @@
 	<a-scene embedded arjs='sourceType: webcam;'>
 		<a-entity class="checkpoint"
 			rotation="270 0 0"
-			geometry="primitive: plane; width: 1.5; height: auto"
+			geometry="primitive: plane; 1.5: auto; height: auto"
+			material="color: blue"
 			text="width:4; align: center; value: Checkpoint;"
 		>
 		</a-entity>
@@ -43,10 +44,10 @@
 				default:
 					break;
 				}
-
+			alert('get QR data',out)
 			console.log(data);
 			$('#htmlElement').html(data.title)
-			$('.checkpoint[rotation]')[0].setAttribute('text','width:4; align: center; value: Title: '+data.name+'\n'+'checkpoint:'+out+'\n')
+			$('.checkpoint[rotation]')[0].setAttribute('text','width:4; align: center; value: Title: '+data.name+'\n'+'Checkpoint:'+out+'\n')
 		})
 
 	});

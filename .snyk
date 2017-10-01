@@ -1,0 +1,20 @@
+# Snyk (https://snyk.io) policy file, patches or ignores known vulnerabilities.
+version: v1.7.1
+ignore: {}
+# patches apply the minimum changes required to fix a vulnerability
+patch:
+  'npm:debug:20170905':
+    - '@risingstack/trace > debug':
+        patched: '2017-10-01T08:45:11.489Z'
+    - shrink-ray > debug:
+        patched: '2017-10-01T08:45:11.489Z'
+    - webpack-plugin-critical > critical > finalhandler > debug:
+        patched: '2017-10-01T08:45:11.489Z'
+    - socket.io > socket.io-adapter > socket.io-parser > debug:
+        patched: '2017-10-01T08:45:11.489Z'
+    - webpack-plugin-critical > critical > penthouse > phantomjs-prebuilt > extract-zip > debug:
+        patched: '2017-10-01T08:45:11.489Z'
+    - webpack-plugin-critical > critical > postcss-image-inliner > debug:
+        patched: '2017-10-01T08:45:11.489Z'
+    - webpack-plugin-critical > critical > postcss-image-inliner > asset-resolver > debug:
+        patched: '2017-10-01T08:45:11.489Z'

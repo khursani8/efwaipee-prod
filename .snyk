@@ -6,3 +6,4 @@ patch:
   'npm:ms:20170412':
     - webpack-plugin-critical > critical > penthouse > phantomjs-prebuilt > extract-zip > debug > ms:
         patched: '2017-08-20T08:45:09.532Z'
+
